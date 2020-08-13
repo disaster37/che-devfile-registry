@@ -25,19 +25,17 @@ components:
   type: chePlugin
 - id: vscodevim/vim/latest
   type: chePlugin
-- id: redhat/vscode-yaml/latest
-  type: chePlugin
 - id: 4ops/terraform/latest
   type: chePlugin
 - id: ms-azuretools/vscode-docker/latest
   type: chePlugin
 - id: puppet/puppet/latest
   type: chePlugin
-- id: RandomChance/logstash/latest
+- id: randomchance/logstash/latest
   type: chePlugin
-- id: rebornix/Ruby/latest
+- id: rebornix/ruby/latest
   type: chePlugin
-- id: wholroyd/HCL/latest
+- id: wholroyd/hcl/latest
   type: chePlugin
 -
   type: dockerimage
