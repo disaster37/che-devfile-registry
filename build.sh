@@ -35,6 +35,8 @@ Options:
         cached in the registry; disabled by default.
     --rhel
         Build using the rhel.Dockerfile (UBI images) instead of default
+    --proxy
+        Set proxy to build image
 "
 
 function print_usage() {
@@ -69,6 +71,10 @@ function parse_arguments() {
             DOCKERFILE="./build/dockerfiles/rhel.Dockerfile"
             shift
             ;;
+            --proxy)
+            PROXY="$2"
+            shift; shift;
+            ;;
             *)
             print_usage
             exit 0
@@ -87,6 +93,8 @@ case $VERSION in
         -t "${IMAGE}" \
         -f ${DOCKERFILE} \
         --build-arg "USE_DIGESTS=${USE_DIGESTS}" \
+        --build-arg http_proxy=${PROXY} \
+        --build-arg https_proxy=${PROXY} \
         --target "${TARGET}" .
     ;;
   *)
@@ -96,6 +104,8 @@ case $VERSION in
         -f "${DOCKERFILE}" \
         --build-arg "PATCHED_IMAGES_TAG=${VERSION}" \
         --build-arg "USE_DIGESTS=${USE_DIGESTS}" \
+        --build-arg http_proxy=${PROXY} \
+        --build-arg https_proxy=${PROXY} \
         --target "${TARGET}" .
     ;;
 esac

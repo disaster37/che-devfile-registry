@@ -7,6 +7,10 @@
 # SPDX-License-Identifier: EPL-2.0
 #
 FROM docker.io/alpine:3.11.5 AS builder
+
+ARG http_proxy
+ARG https_proxy
+
 RUN apk add --no-cache py-pip jq bash wget git skopeo && pip install yq
 
 # Registry, organization, and tag to use for base images in dockerfiles. Devfiles

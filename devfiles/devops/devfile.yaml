@@ -1,0 +1,51 @@
+---
+apiVersion: 1.0.0
+metadata:
+  generateName: devops-
+  
+components:
+- type: cheEditor
+  id: eclipse/che-theia/next
+  memoryLimit: 1Gi
+- id: moby/buildkit/latest
+  type: chePlugin
+- id: containers/buildah/latest
+  type: chePlugin
+- id: mads-hartmann/bash-ide/latest
+  type: chePlugin
+- id: rogalmic/bash-debug/latest
+  type: chePlugin
+- id: ms-vscode/vscode-github-pullrequest/latest
+  type: chePlugin
+- id: eamodio/vscode-gitlens/latest
+  type: chePlugin
+- id: ms-kubernetes-tools/vscode-kubernetes-tools/latest
+  type: chePlugin
+- id: ms-python/python/latest
+  type: chePlugin
+- id: vscodevim/vim/latest
+  type: chePlugin
+- id: redhat/vscode-yaml/latest
+  type: chePlugin
+- id: 4ops/terraform/latest
+  type: chePlugin
+- id: ms-azuretools/vscode-docker/latest
+  type: chePlugin
+- id: puppet/puppet/latest
+  type: chePlugin
+- id: RandomChance/logstash/latest
+  type: chePlugin
+- id: rebornix/Ruby/latest
+  type: chePlugin
+- id: wholroyd/HCL/latest
+  type: chePlugin
+-
+  type: dockerimage
+  # this version is used in the plugin
+  image: 'webcenter/che-devops:latest'
+  alias: devops-cli
+  memoryLimit: 1Gi
+  mountSources: true
+  volumes:
+    - name: home
+      containerPath: /home/dev
