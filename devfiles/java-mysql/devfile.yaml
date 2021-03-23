@@ -12,8 +12,7 @@ projects:
 components:
   -
     type: chePlugin
-    id: redhat/java/latest
-    memoryLimit: 1280Mi
+    id: redhat/java8/latest
   -
     type: dockerimage
     alias: tools
@@ -32,6 +31,10 @@ components:
     endpoints:
       - name: '8080-tcp'
         port: 8080
+      - name: 'debug'
+        port: 5005
+        attributes:
+          public: 'false'
     mountSources: true
     volumes:
       - name: m2
@@ -39,7 +42,7 @@ components:
   -
     type: dockerimage
     alias: mysql
-    image: docker.io/centos/mysql-57-centos7
+    image: quay.io/eclipse/che--centos--mysql-57-centos7:latest-e08ee4d43b7356607685b69bde6335e27cf20c020f345b6c6c59400183882764
     env:
       - name: MYSQL_USER
         value: petclinic

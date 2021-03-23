@@ -12,8 +12,9 @@ projects:
 components:
   -
     type: chePlugin
-    id: redhat/java11/latest
-    memoryLimit: 1512Mi
+    id: redhat/java/latest
+    preferences:
+      java.server.launchMode: Standard
   -
     type: dockerimage
     alias: tools
@@ -32,6 +33,10 @@ components:
     endpoints:
       - name: '8080-tcp'
         port: 8080
+      - name: 'debug'
+        port: 5005
+        attributes:
+          public: 'false'
     mountSources: true
     volumes:
       - name: m2

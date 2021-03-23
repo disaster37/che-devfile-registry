@@ -12,11 +12,10 @@ components:
   -
     type: chePlugin
     id: ms-python/python/latest
-    memoryLimit: 512Mi
   -
     type: dockerimage
     alias: python
-    image: quay.io/eclipse/che-python-3.7:nightly
+    image: quay.io/eclipse/che-python-3.8:nightly
     memoryLimit: 512Mi
     mountSources: true
 commands:
@@ -26,5 +25,13 @@ commands:
       -
         type: exec
         component: python
-        command: "python hello-world.py"
-        workdir: ${CHE_PROJECTS_ROOT}/python-hello-world
+        command: '. ${CHE_PROJECTS_ROOT}/.venv/bin/activate &&  python hello-world.py'
+        workdir: '${CHE_PROJECTS_ROOT}/python-hello-world'
+  -
+    name: set up venv
+    actions:
+      -
+        type: exec
+        workdir: '${CHE_PROJECTS_ROOT}/'
+        command: python -m venv /projects/.venv
+        component: python

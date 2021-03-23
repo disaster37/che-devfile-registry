@@ -8,15 +8,14 @@ projects:
   source:
     type: git
     location: "https://github.com/symfony/demo.git"
+    branch: main
 components:
 -
   type: chePlugin
-  id: redhat/php/latest
-  memoryLimit: 1Gi
+  id: bmewburn/vscode-intelephense-client/latest
 -
   type: chePlugin
-  id: redhat/php-debugger/latest
-  memoryLimit: 256Mi
+  id: felixfbecker/php-debug/latest
 -
   type: dockerimage
   alias: php
@@ -34,7 +33,7 @@ components:
 -
   type: dockerimage
   alias: mysql
-  image: docker.io/centos/mysql-57-centos7
+  image: quay.io/eclipse/che--centos--mysql-57-centos7:latest-e08ee4d43b7356607685b69bde6335e27cf20c020f345b6c6c59400183882764
   env:
     - name: MYSQL_USER
       value: db_user
@@ -50,7 +49,7 @@ components:
       port: 3306
       attributes:
         discoverable: "true"
-  mountSources: false
+  mountSources: true
 commands:
 -
   name: Start Symfony Web Server

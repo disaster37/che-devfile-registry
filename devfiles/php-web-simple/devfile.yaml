@@ -11,12 +11,10 @@ projects:
 components:
 -
   type: chePlugin
-  id: redhat/php/latest
-  memoryLimit: 1Gi
+  id: bmewburn/vscode-intelephense-client/latest
 -
   type: chePlugin
-  id: redhat/php-debugger/latest
-  memoryLimit: 256Mi
+  id: felixfbecker/php-debug/latest
 -
   type: dockerimage
   alias: php

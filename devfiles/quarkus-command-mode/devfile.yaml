@@ -25,13 +25,18 @@ components:
           -Duser.home=/home/user"
       - name: MAVEN_OPTS
         value: $(JAVA_OPTS)  
-    memoryLimit: 4927M
+    memoryLimit: 4G
     mountSources: true
     volumes:
       - name: m2
         containerPath: /home/user/.m2
-
-  - type: dockerimage
+    endpoints:
+      - name: 'debug'
+        port: 5005
+        attributes:
+          public: 'false'
+  -
+    type: dockerimage
     alias: ubi-minimal
     image: 'registry.access.redhat.com/ubi8/ubi-minimal'
     memoryLimit: 32M
@@ -66,7 +71,7 @@ commands:
       -
         type: exec
         component: centos-quarkus-maven
-        command: "mvn package -Dnative -Dmaven.test.skip"
+        command: "mvn package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=2G"
         workdir: ${CHE_PROJECTS_ROOT}/quarkus-quickstarts/getting-started-command-mode
 
   -

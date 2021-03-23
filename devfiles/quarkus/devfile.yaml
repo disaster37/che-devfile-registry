@@ -24,8 +24,10 @@ components:
           -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom
           -Duser.home=/home/user"
       - name: MAVEN_OPTS
-        value: $(JAVA_OPTS)  
-    memoryLimit: 4927M
+        value: $(JAVA_OPTS)
+      - name: QUARKUS_HTTP_HOST
+        value: 0.0.0.0
+    memoryLimit: 4G
     mountSources: true
     volumes:
       - name: m2
@@ -35,8 +37,12 @@ components:
         port: 8080
         attributes:
           path: /hello/greeting/che-user
-
-  - type: dockerimage
+      - name: 'debug'
+        port: 5005
+        attributes:
+          public: 'false'
+  -
+    type: dockerimage
     alias: ubi-minimal
     image: 'registry.access.redhat.com/ubi8/ubi-minimal'
     memoryLimit: 32M
@@ -48,6 +54,14 @@ components:
           path: /hello/greeting/che-user
     command: ['tail']
     args: ['-f', '/dev/null']
+
+  - id: redhat/vscode-didact/latest
+    preferences:
+      didact.defaultUrl: "{{ DEVFILE_REGISTRY_URL }}/devfiles/quarkus/didact.md"
+      che.welcome.enable: false
+      didact.openDefaultTutorialAtStartup: true
+    type: chePlugin
+    alias: didact-plugin
 
 commands:
   -
@@ -72,7 +86,7 @@ commands:
       -
         type: exec
         component: centos-quarkus-maven
-        command: "./mvnw package -Dnative -Dmaven.test.skip"
+        command: "./mvnw package -Dnative -Dmaven.test.skip -Dquarkus.native.native-image-xmx=2G"
         workdir: ${CHE_PROJECTS_ROOT}/quarkus-quickstarts/getting-started
 
   -
@@ -81,7 +95,7 @@ commands:
       -
         type: exec
         component: ubi-minimal
-        command: ./getting-started-1.0-SNAPSHOT-runner
+        command: ./getting-started-1.0.0-SNAPSHOT-runner
         workdir: ${CHE_PROJECTS_ROOT}/quarkus-quickstarts/getting-started/target
   -
     name: Attach remote debugger

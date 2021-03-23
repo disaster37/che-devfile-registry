@@ -12,10 +12,11 @@ components:
   -
     type: chePlugin
     id: che-incubator/typescript/latest
-    memoryLimit: 512Mi
-  - 
+  -
     type: chePlugin
     id: ms-vscode/node-debug2/latest
+    preferences:
+      debug.node.useV3: false
   -
     type: dockerimage
     alias: nodejs
