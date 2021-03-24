@@ -5,17 +5,9 @@ metadata:
 
 components:
   - type: cheEditor
-    id: eclipse/che-theia/next
+    id: eclipse/che-theia/7.27.2
     memoryLimit: 1Gi
-  - id: moby/buildkit/latest
-    type: chePlugin
   - id: containers/buildah/latest
-    type: chePlugin
-  - id: mads-hartmann/bash-ide/latest
-    type: chePlugin
-  - id: rogalmic/bash-debug/latest
-    type: chePlugin
-  - id: ms-vscode/vscode-github-pullrequest/latest
     type: chePlugin
   - id: eamodio/vscode-gitlens/latest
     type: chePlugin
