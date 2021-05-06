@@ -5,7 +5,7 @@ metadata:
 
 components:
   - type: cheEditor
-    id: eclipse/che-theia/7.27.2
+    id: eclipse/che-theia/latest
     memoryLimit: 1Gi
   - id: containers/buildah/latest
     type: chePlugin
@@ -17,13 +17,13 @@ components:
     type: chePlugin
   - id: 4ops/terraform/latest
     type: chePlugin
-  - id: ms-azuretools/vscode-docker/latest
+  - id: jeff-hykin/better-dockerfile-syntax/latest
     type: chePlugin
-  - id: puppet/puppet/latest
+  - id: puppet/puppet-vscode/latest
     type: chePlugin
   - id: randomchance/logstash/latest
     type: chePlugin
-  - id: rebornix/ruby/latest
+  - id: castwide/solargraph/latest
     type: chePlugin
   - id: wholroyd/hcl/latest
     type: chePlugin
